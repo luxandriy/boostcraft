@@ -1,0 +1,25 @@
+{
+  "schemaVersion": 1,
+  "id": "boostcraft",
+  "version": "1.0.0",
+  "name": "BoostCraft",
+  "description": "Ultimate Minecraft FPS booster - auto optimizer for low to high end PCs",
+  "authors": ["luxandriy"],
+  "contact": {},
+  "license": "MIT",
+  "icon": "assets/boostcraft/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "com.luxandriy.boostcraft.BoostCraftMod"
+    ],
+    "client": [
+      "com.luxandriy.boostcraft.client.ClientInit"
+    ]
+  },
+  "depends": {
+    "fabricloader": ">=0.14.0",
+    "fabric": "*",
+    "minecraft": "1.21.1"
+  }
+}

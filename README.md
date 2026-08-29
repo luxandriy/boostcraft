@@ -25,12 +25,50 @@ BoostCraft is a lightweight, standalone Fabric mod focused on boosting FPS and m
 
 ## Installation
 
+### Mod
+
 1. Install Fabric Loader (version >= 0.14.0) for Minecraft 1.21.1.
 2. Download the BoostCraft jar from the `releases` page (or build locally):
    - Build locally: clone this repo and run `./gradlew build` (requires Java 21)
 3. Place the produced `boostcraft-1.0.0.jar` into your `%minecraft%/mods` folder.
 4. (Optional) Install Sodium, Lithium, and FerriteCore for the best results.
 5. Launch Minecraft with the Fabric loader profile.
+
+### booster-app (optional helper)
+
+BoostCraft includes a small helper tool in `booster-app` that detects your system RAM/CPU and prints recommended JVM arguments for Minecraft, and can optionally optimize your Minecraft `options.txt` for higher FPS.
+
+1. Install Python 3.8+ and pip.
+2. Install the helper's dependency:
+
+   ```bash
+   pip install -r booster-app/requirements.txt
+   ```
+
+3. Preview recommended JVM arguments and options changes (dry-run):
+
+   ```bash
+   python booster-app/booster.py --dry-run
+   ```
+
+4. Write recommendations to disk and attempt to optimize `options.txt` (will create a timestamped backup):
+
+   ```bash
+   python booster-app/booster.py
+   ```
+
+5. To target a specific options.txt file:
+
+   ```bash
+   python booster-app/booster.py --options /path/to/options.txt
+   ```
+
+Notes about booster-app
+
+- The script writes recommended JVM args to `booster-app/recommended_jvm_args.txt` (unless run with --dry-run).
+- When modifying `options.txt`, the script creates a timestamped backup in the same directory before writing changes.
+- The options modifications are conservative (reduce renderDistance, disable vsync/fancy graphics, etc.). Review the changes before launching the game.
+- The helper uses `psutil` to detect system RAM and cores and applies a heuristic to choose a sensible heap and GC (G1 or ZGC) for most users.
 
 ## Usage
 
